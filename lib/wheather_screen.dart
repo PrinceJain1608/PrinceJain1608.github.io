@@ -2,9 +2,30 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:http/http.dart' as http;
+import 'package:wheather/API.dart';
 
-class WheatherScreen extends StatelessWidget {
+class WheatherScreen extends StatefulWidget {
   const WheatherScreen({super.key});
+
+  @override
+  State<WheatherScreen> createState() => _WheatherScreenState();
+}
+
+class _WheatherScreenState extends State<WheatherScreen> {
+  @override
+  void initState() {
+    super.initState();
+    getCurrentWeather();
+  }
+
+  Future getCurrentWeather() async {
+    String cityName = "London";
+    final result = await http.get(Uri.parse(
+        "https://api.openweathermap.org/data/2.5/weather?q=$cityName&APPID=$APIKey"));
+    print(result.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +63,7 @@ class WheatherScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "300° F",
+                            "300K",
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                           ),
@@ -84,7 +105,7 @@ class WheatherScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             Text(
-                              "03:00",
+                              "09:00",
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
                             ),
@@ -98,7 +119,7 @@ class WheatherScreen extends StatelessWidget {
                             SizedBox(
                               height: 8,
                             ),
-                            Text("320.12")
+                            Text("301.17")
                           ],
                         ),
                       ),
@@ -113,7 +134,91 @@ class WheatherScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "03:00",
+                            "12:00",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Icon(
+                            Icons.sunny,
+                            size: 32,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text("301.54")
+                        ],
+                      ),
+                    ),
+                  ),
+                  Card(
+                    elevation: 6,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16)),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            "15:00",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Icon(
+                            Icons.cloud,
+                            size: 32,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text("301.11")
+                        ],
+                      ),
+                    ),
+                  ),
+                  Card(
+                    elevation: 6,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16)),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            "18:00",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Icon(
+                            Icons.sunny,
+                            size: 32,
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text("300.79")
+                        ],
+                      ),
+                    ),
+                  ),
+                  Card(
+                    elevation: 6,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16)),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            "21:00",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -141,91 +246,7 @@ class WheatherScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "03:00",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Icon(
-                            Icons.cloud,
-                            size: 32,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("320.12")
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 6,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16)),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "03:00",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Icon(
-                            Icons.cloud,
-                            size: 32,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("320.12")
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 6,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16)),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "03:00",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Icon(
-                            Icons.cloud,
-                            size: 32,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text("320.12")
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 6,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16)),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "03:00",
+                            "00:00",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
@@ -294,7 +315,7 @@ class WheatherScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Icon(
-                        Icons.wind_power_outlined,
+                        Icons.air,
                         size: 40,
                       ),
                       SizedBox(
@@ -320,7 +341,7 @@ class WheatherScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Icon(
-                        Icons.umbrella_outlined,
+                        Icons.beach_access,
                         size: 40,
                       ),
                       SizedBox(
