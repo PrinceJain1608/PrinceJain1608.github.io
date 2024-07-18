@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# wheather
+# weather
 
 A new Flutter project.
 
