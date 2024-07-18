@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wheather/wheather_screen.dart';
+import 'package:wheather/weather_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true),
-      home: const WheatherScreen(),
+      home: const WeatherScreen(),
     );
   }
 }

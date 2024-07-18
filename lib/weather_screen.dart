@@ -7,14 +7,14 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:wheather/API.dart';
 
-class WheatherScreen extends StatefulWidget {
-  const WheatherScreen({super.key});
+class WeatherScreen extends StatefulWidget {
+  const WeatherScreen({super.key});
 
   @override
-  State<WheatherScreen> createState() => _WheatherScreenState();
+  State<WeatherScreen> createState() => _WheatherScreenState();
 }
 
-class _WheatherScreenState extends State<WheatherScreen> {
+class _WheatherScreenState extends State<WeatherScreen> {
   @override
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
