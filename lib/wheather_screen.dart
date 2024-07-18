@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:wheather/API.dart';
 
 class WheatherScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _WheatherScreenState extends State<WheatherScreen> {
   @override
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
-      String cityName = "London";
+      String cityName = "India";
       final result = await http.get(Uri.parse(
           "https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$APIKey"));
       final data = jsonDecode(result.body);
@@ -42,7 +43,9 @@ class _WheatherScreenState extends State<WheatherScreen> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {});
+            },
             icon: const Icon(Icons.refresh),
           ),
         ],
@@ -106,7 +109,7 @@ class _WheatherScreenState extends State<WheatherScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  "Weather Forecast",
+                  "Hourly Forecast",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                 ),
                 SizedBox(
@@ -117,7 +120,6 @@ class _WheatherScreenState extends State<WheatherScreen> {
                   child: Row(
                     children: [
                       SizedBox(
-                        width: 100,
                         child: Card(
                           elevation: 6,
                           child: Container(
@@ -127,7 +129,8 @@ class _WheatherScreenState extends State<WheatherScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                  "09:00",
+                                  DateFormat.j().format(DateTime.parse(
+                                      data["list"][0]["dt_txt"])),
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
@@ -136,13 +139,20 @@ class _WheatherScreenState extends State<WheatherScreen> {
                                   height: 8,
                                 ),
                                 Icon(
-                                  Icons.cloud,
+                                  data["list"][1]["weather"][0]["main"] ==
+                                              "Clouds" ||
+                                          data["list"][1]["weather"][0]
+                                                  ["main"] ==
+                                              "Rain"
+                                      ? Icons.cloud
+                                      : Icons.sunny,
                                   size: 32,
                                 ),
                                 SizedBox(
                                   height: 8,
                                 ),
-                                Text("301.17")
+                                Text(
+                                    data["list"][1]["main"]["temp"].toString()),
                               ],
                             ),
                           ),
@@ -157,7 +167,9 @@ class _WheatherScreenState extends State<WheatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "12:00",
+                                DateFormat.j().format(
+                                    DateTime.parse(data["list"][1]["dt_txt"])),
+                                //data["list"][2]["dt_txt"].toString(),
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
@@ -165,13 +177,18 @@ class _WheatherScreenState extends State<WheatherScreen> {
                                 height: 8,
                               ),
                               Icon(
-                                Icons.sunny,
+                                data["list"][2]["weather"][0]["main"] ==
+                                            "Clouds" ||
+                                        data["list"][2]["weather"][0]["main"] ==
+                                            "Rain"
+                                    ? Icons.cloud
+                                    : Icons.sunny,
                                 size: 32,
                               ),
                               SizedBox(
                                 height: 8,
                               ),
-                              Text("301.54")
+                              Text(data["list"][2]["main"]["temp"].toString())
                             ],
                           ),
                         ),
@@ -185,7 +202,8 @@ class _WheatherScreenState extends State<WheatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "15:00",
+                                DateFormat.j().format(
+                                    DateTime.parse(data["list"][2]["dt_txt"])),
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
@@ -193,13 +211,18 @@ class _WheatherScreenState extends State<WheatherScreen> {
                                 height: 8,
                               ),
                               Icon(
-                                Icons.cloud,
+                                data["list"][3]["weather"][0]["main"] ==
+                                            "Clouds" ||
+                                        data["list"][3]["weather"][0]["main"] ==
+                                            "Rain"
+                                    ? Icons.cloud
+                                    : Icons.sunny,
                                 size: 32,
                               ),
                               SizedBox(
                                 height: 8,
                               ),
-                              Text("301.11")
+                              Text(data["list"][3]["main"]["temp"].toString())
                             ],
                           ),
                         ),
@@ -213,7 +236,8 @@ class _WheatherScreenState extends State<WheatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "18:00",
+                                DateFormat.j().format(
+                                    DateTime.parse(data["list"][3]["dt_txt"])),
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
@@ -221,13 +245,18 @@ class _WheatherScreenState extends State<WheatherScreen> {
                                 height: 8,
                               ),
                               Icon(
-                                Icons.sunny,
+                                data["list"][4]["weather"][0]["main"] ==
+                                            "Clouds" ||
+                                        data["list"][4]["weather"][0]["main"] ==
+                                            "Rain"
+                                    ? Icons.cloud
+                                    : Icons.sunny,
                                 size: 32,
                               ),
                               SizedBox(
                                 height: 8,
                               ),
-                              Text("300.79")
+                              Text(data["list"][4]["main"]["temp"].toString())
                             ],
                           ),
                         ),
@@ -241,7 +270,8 @@ class _WheatherScreenState extends State<WheatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "21:00",
+                                DateFormat.j().format(
+                                    DateTime.parse(data["list"][4]["dt_txt"])),
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
@@ -249,13 +279,18 @@ class _WheatherScreenState extends State<WheatherScreen> {
                                 height: 8,
                               ),
                               Icon(
-                                Icons.cloud,
+                                data["list"][5]["weather"][0]["main"] ==
+                                            "Clouds" ||
+                                        data["list"][5]["weather"][0]["main"] ==
+                                            "Rain"
+                                    ? Icons.cloud
+                                    : Icons.sunny,
                                 size: 32,
                               ),
                               SizedBox(
                                 height: 8,
                               ),
-                              Text("320.12")
+                              Text(data["list"][5]["main"]["temp"].toString())
                             ],
                           ),
                         ),
@@ -269,7 +304,8 @@ class _WheatherScreenState extends State<WheatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                "00:00",
+                                DateFormat.j().format(
+                                    DateTime.parse(data["list"][5]["dt_txt"])),
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
