@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
     "name": "wheather",
     "short_name": "wheather",
+=======
+    "name": "shop_app",
+    "short_name": "shop_app",
+>>>>>>> a9cc20c1b328cc73b9c5207afafe88d8268794d6
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
